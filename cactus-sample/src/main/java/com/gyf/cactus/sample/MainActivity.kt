@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import com.gyf.cactus.ext.cactusRestart
 import com.gyf.cactus.ext.cactusUnregister
 import com.gyf.cactus.ext.cactusUpdateNotification
+import com.gyf.cactus.sample.client.manager.Manager
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -40,6 +41,8 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        Manager.initAssetManager(resources.assets)
         initData()
         setListener()
     }
