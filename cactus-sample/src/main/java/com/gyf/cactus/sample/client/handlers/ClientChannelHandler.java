@@ -80,8 +80,9 @@ public class ClientChannelHandler extends SimpleChannelInboundHandler<ProxyMessa
             e.printStackTrace();
             log.info("本地开启端口[{}]已打开, message: {}", toPort, e.getMessage());
 
+            //TODO 判断端口已打开异常特别处理
             //proxyMessage的其他信息不变
-            proxyMessage.setContent(Constants.STATE.FAILED.value);
+            proxyMessage.setContent(Constants.STATE.SUCCESS.value);
 
             //回复客户端
             channel.writeAndFlush(proxyMessage);
