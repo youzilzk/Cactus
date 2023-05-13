@@ -12,6 +12,8 @@ public class Client implements Serializable {
 
     private String name;
 
+    private String macAddress;
+
     private String host;
 
     private Channel channel;
@@ -21,6 +23,19 @@ public class Client implements Serializable {
 
     public Client(String id) {
         this.id = id;
+    }
+
+    public Client(String id, String macAddress) {
+        this.id = id;
+        this.macAddress = macAddress;
+    }
+
+    public String getMacAddress() {
+        return macAddress;
+    }
+
+    public void setMacAddress(String macAddress) {
+        this.macAddress = macAddress;
     }
 
     public String getId() {
