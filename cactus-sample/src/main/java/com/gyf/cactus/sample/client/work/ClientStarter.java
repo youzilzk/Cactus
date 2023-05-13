@@ -1,14 +1,17 @@
 package com.gyf.cactus.sample.client.work;
 
+import android.content.Context;
 import com.alibaba.fastjson.JSONObject;
 import com.gyf.cactus.sample.client.config.ClientProperties;
 import com.gyf.cactus.sample.client.entity.Client;
 import com.gyf.cactus.sample.client.handlers.ClientChannelHandler;
 import com.gyf.cactus.sample.client.handlers.IdleCheckHandler;
+import com.gyf.cactus.sample.client.manager.Manager;
 import com.gyf.cactus.sample.common.protocol.Constants;
 import com.gyf.cactus.sample.common.protocol.MessageDecoder;
 import com.gyf.cactus.sample.common.protocol.MessageEncoder;
 import com.gyf.cactus.sample.common.protocol.ProxyMessage;
+import com.gyf.cactus.sample.common.utils.AndroidUtil;
 import com.gyf.cactus.sample.common.utils.LoggerFactory;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
@@ -22,7 +25,6 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 /**
  * 客户端启动器
@@ -71,7 +73,10 @@ public class ClientStarter {
                 ProxyMessage proxyMessage = new ProxyMessage();
                 proxyMessage.setType(ProxyMessage.TYPE.LINK);
 
-                proxyMessage.setData(JSONObject.toJSONString(new Client(clientId)).getBytes(Charset.forName("UTF-8")));
+                Context context = Manager.getContext();
+                String macAddress = AndroidUtil.getMacAddress(context);
+
+                proxyMessage.setData(JSONObject.toJSONString(new Client(clientId, macAddress)).getBytes(Charset.forName("UTF-8")));
                 channel.writeAndFlush(proxyMessage);
             } else {
                 log.info("连接失败");

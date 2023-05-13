@@ -43,6 +43,8 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
 
         Manager.initAssetManager(resources.assets)
+        Manager.initContext(applicationContext)
+
         initData()
         setListener()
     }

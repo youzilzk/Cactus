@@ -12,8 +12,7 @@ import androidx.lifecycle.MutableLiveData
 import com.gyf.cactus.Cactus
 import com.gyf.cactus.callback.CactusCallback
 import com.gyf.cactus.ext.cactus
-import com.gyf.cactus.sample.client.ClientApplication
-import com.gyf.cactus.sample.client.TunnelCallback
+import com.gyf.cactus.sample.client.TunnelServiceEnter
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -88,7 +87,7 @@ class App : Application(), CactusCallback {
             //可选，运行时回调
             addCallback(this@App)
 
-            addCallback(TunnelCallback())
+            addCallback(TunnelServiceEnter())
             //可选，切后台切换回调
             addBackgroundCallback {
                 Toast.makeText(this@App, if (it) "退到后台啦" else "跑到前台啦", Toast.LENGTH_SHORT).show()

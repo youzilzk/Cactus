@@ -78,7 +78,7 @@ public class ClientChannelHandler extends SimpleChannelInboundHandler<ProxyMessa
             channel.writeAndFlush(proxyMessage);
         } catch (Exception e) {
             e.printStackTrace();
-            log.info("隧道在本地开启端口[{}]失败, message: {}", toPort, e.getMessage());
+            log.info("本地开启端口[{}]已打开, message: {}", toPort, e.getMessage());
 
             //proxyMessage的其他信息不变
             proxyMessage.setContent(Constants.STATE.FAILED.value);
@@ -111,7 +111,7 @@ public class ClientChannelHandler extends SimpleChannelInboundHandler<ProxyMessa
     }
 
     private void handleHeartbeatMessage(ChannelHandlerContext ctx, ProxyMessage proxyMessage) {
-        log.info("收到心跳回复[{}]", ctx.channel().id());
+        log.info("心跳回复[{}]", ctx.channel().id());
     }
 
     private void handleOpenConnectMessage(ChannelHandlerContext ctx, ProxyMessage proxyMessage) throws InterruptedException {
@@ -197,7 +197,6 @@ public class ClientChannelHandler extends SimpleChannelInboundHandler<ProxyMessa
 
         channel.close().sync();
         ClientManager.removeClient();
-        System.exit(2);
     }
 
     private void handleLinkMessage(ChannelHandlerContext ctx, ProxyMessage proxyMessage) {

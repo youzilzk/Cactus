@@ -16,8 +16,8 @@ import java.net.InetSocketAddress;
 public class IdleCheckHandler extends IdleStateHandler {
     private static final LoggerFactory log = LoggerFactory.getLogger();
 
-    public static final int READ_IDLE_TIME = 60;
-    public static final int WRITE_IDLE_TIME = 50;
+    public static final int READ_IDLE_TIME = 50;
+    public static final int WRITE_IDLE_TIME = 45;
 
     public IdleCheckHandler() {
         super(READ_IDLE_TIME, WRITE_IDLE_TIME, 0);
